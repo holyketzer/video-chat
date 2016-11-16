@@ -1,0 +1,6 @@
+div = @chat_room.name
+div = link_to 'Join', '#', class: 'join', 'data-url' => join_chat_room_path(@chat_room)
+
+div#chat
+div
+  = link_to 'Disconect', '#', id: 'disconnectBtn'

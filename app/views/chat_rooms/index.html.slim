@@ -1,0 +1,12 @@
+h1 Chat rooms
+
+- @chat_rooms.each do |chat_room|
+  div
+    => chat_room.name
+    => link_to 'Details', [chat_room]
+    => link_to 'Edit', [:edit, chat_room]
+    => link_to 'Join', [:join, chat_room], method: :post
+
+= link_to 'Create new', [:new, :chat_room]
+
+div#chat

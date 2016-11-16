@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.opentok.com/session/create
+    body:
+      encoding: UTF-8
+      string: p2p.preference=enabled
+    headers:
+      X-Tb-Partner-Auth:
+      - 45719982:bb2b1c9422886452a12f7aeebcf0762849e3e63f
+      User-Agent:
+      - OpenTok-Ruby-SDK/0.13.7
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 16 Nov 2016 22:54:53 GMT
+      Content-Type:
+      - application/xml
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Length:
+      - '347'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><sessions><Session><session_id>2_MX40NTcxOTk4Mn5-MTQ3OTMzNjg5MzkxM35LU0Y1Tkx3Nk11aDRMOFpGdFQ1c3RxRkR-UH4</session_id><project_id>45719982</project_id><partner_id>45719982</partner_id><create_dt>Wed
+        Nov 16 14:54:53 PST 2016</create_dt><media_server_url></media_server_url></Session></sessions>
+    http_version: 
+  recorded_at: Wed, 16 Nov 2016 22:54:53 GMT
+recorded_with: VCR 3.0.3

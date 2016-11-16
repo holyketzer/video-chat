@@ -1,0 +1,13 @@
+defaults: &defaults
+  open_tok:
+    api_key: 45719982
+    api_secret: bb2b1c9422886452a12f7aeebcf0762849e3e63f
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
