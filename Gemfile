@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'devise', '~> 4.2.0'
+
 # Settings
 gem 'settingslogic', '~> 2.0.9'
 

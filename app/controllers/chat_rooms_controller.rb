@@ -1,4 +1,5 @@
 class ChatRoomsController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_chat_room, only: [:show, :edit, :update, :destroy, :join]
 
   def index

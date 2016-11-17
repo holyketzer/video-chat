@@ -28,15 +28,16 @@ html lang="en"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to 'Live chat', root_path, class: 'navbar-brand'
+          = link_to 'Home', root_path, class: 'navbar-brand'
+          = link_to 'Chat rooms', chat_rooms_path, class: 'navbar-brand'
         #navbar.navbar-collapse.collapse
-          form.navbar-form.navbar-right
-            .form-group
-              input.form-control placeholder="Email" type="text" /
-            .form-group
-              input.form-control placeholder="Password" type="password" /
-            button.btn.btn-success type="submit"  Sign in
-        /! /.navbar-collapse
+          .navbar-form.navbar-right
+            - if current_user
+              => link_to current_user.email, '#', class: 'btn btn-default'
+              => link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-warning'
+            - else
+              => link_to 'Sign in', new_user_session_path, class: 'btn btn-success'
+              => link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary'
 
     .top-splitter
 
