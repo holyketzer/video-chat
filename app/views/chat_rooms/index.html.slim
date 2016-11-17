@@ -7,13 +7,16 @@
   table.table.table-striped
     tr
       th Room
+      th Owner
       th
     - @chat_rooms.each do |chat_room|
       tr
         td = link_to chat_room.name, [chat_room]
+        td = chat_room.owner.email
         td
           => link_to 'Join', '#', class: 'join btn btn-primary', 'data-url' => join_chat_room_path(chat_room)
-          => link_to 'Edit', [:edit, chat_room], class: 'btn btn-warning'
-          => link_to 'Delete', [chat_room], method: :delete, class: 'btn btn-danger', data: { confirm: 'Delete this chat?' }
+          - if can? :manage, chat_room
+            => link_to 'Edit', [:edit, chat_room], class: 'btn btn-warning'
+            => link_to 'Delete', [chat_room], method: :delete, class: 'btn btn-danger', data: { confirm: 'Delete this chat?' }
 
   = render partial: 'shared/chat'

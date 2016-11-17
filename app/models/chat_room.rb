@@ -1,6 +1,8 @@
 class ChatRoom < ActiveRecord::Base
-  validates :name, :session_dump, presence: true
+  validates :name, :session_dump, :owner, presence: true
   validates :name, uniqueness: true
+
+  belongs_to :owner, class_name: 'User'
 
   def session
     if session_dump

@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 4.2.0'
+gem 'cancancan', '~> 1.15'
 
 # Settings
 gem 'settingslogic', '~> 2.0.9'

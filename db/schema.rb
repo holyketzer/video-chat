@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117221238) do
+ActiveRecord::Schema.define(version: 20161117222751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,11 @@ ActiveRecord::Schema.define(version: 20161117221238) do
     t.jsonb    "session_dump", null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "owner_id",     null: false
   end
 
   add_index "chat_rooms", ["name"], name: "index_chat_rooms_on_name", unique: true, using: :btree
+  add_index "chat_rooms", ["owner_id"], name: "index_chat_rooms_on_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

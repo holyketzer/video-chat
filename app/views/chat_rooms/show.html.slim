@@ -1,5 +1,9 @@
 .container
   h1 = @chat_room.name
+  div
+    ' Owner:
+    = @chat_room.owner.email
+  br
   div = link_to 'Join', '#', class: 'join btn btn-primary', 'data-url' => join_chat_room_path(@chat_room)
 
   = render partial: 'shared/chat'
