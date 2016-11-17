@@ -1,12 +1,19 @@
-h1 Chat rooms
+.container
+  h1 Chat rooms
 
-- @chat_rooms.each do |chat_room|
-  div
-    => chat_room.name
-    => link_to 'Details', [chat_room]
-    => link_to 'Edit', [:edit, chat_room]
-    => link_to 'Join', '#', class: 'join', 'data-url' => join_chat_room_path(chat_room)
+  div = link_to 'Create new', [:new, :chat_room], class: 'btn btn-success'
+  br
 
-= link_to 'Create new', [:new, :chat_room]
+  table.table.table-striped
+    tr
+      th Room
+      th
+    - @chat_rooms.each do |chat_room|
+      tr
+        td = link_to chat_room.name, [chat_room]
+        td
+          => link_to 'Join', '#', class: 'join btn btn-primary', 'data-url' => join_chat_room_path(chat_room)
+          => link_to 'Edit', [:edit, chat_room], class: 'btn btn-warning'
+          => link_to 'Delete', [chat_room], method: :delete, class: 'btn btn-danger', data: { confirm: 'Delete this chat?' }
 
-div#chat
+  = render partial: 'shared/chat'

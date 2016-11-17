@@ -49,7 +49,7 @@ class ChatRoomsController < ApplicationController
 
   def destroy
     @chat_room.destroy
-    redirect_to :index
+    redirect_to [:chat_rooms]
   end
 
   private
