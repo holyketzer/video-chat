@@ -1,9 +1,14 @@
 .container
-  h1 = @chat_room.name
-  div
-    ' Owner:
-    = @chat_room.owner.email
-  br
-  div = link_to 'Join', '#', class: 'join btn btn-primary', 'data-url' => join_chat_room_path(@chat_room)
+  .row
+    .col-md-3
+      h1 = @chat_room.name
+      div
+        ' Owner:
+        = @chat_room.owner.email
+      br
+      div
+        => link_to 'Join', '#', class: 'btn btn-primary connect', 'data-url' => join_chat_room_path(@chat_room)
+        => link_to 'Disconect', '#', class: 'btn btn-warning disconnect', style: 'display: none;'
 
-  = render partial: 'shared/chat'
+    .col-md-9
+      div#chat

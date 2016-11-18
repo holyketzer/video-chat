@@ -19,10 +19,16 @@
   margin-top: 50px;
 }
 
-.hidden {
-  visibility: hidden;
-}
-
 .btn {
   min-width: 130px;
+}
+
+#chat {
+  margin-top: 10px;
+  width: 100%;
+
+  .OT_root {
+    display: inline-block;
+    margin: 10px;
+  }
 }

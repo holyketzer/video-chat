@@ -4,16 +4,36 @@ var publisher;
 
 function openTokConnect(apiKey, sessionId, token) {
   // Replace with the replacement element ID:
-  publisher = OT.initPublisher('#chat');
+  publisher = OT.initPublisher(
+    document.getElementById('chat'), {
+      fitMode: 'contain',
+      insertMode: 'append',
+      insertDefaultUI: true,
+      showControls: true,
+      width: '400px',
+      height: '360px'
+    }
+  );
+
   publisher.on({
     streamCreated: function (event) {
-      console.log("Publisher started streaming.");
+      console.log('Publisher started streaming.');
     },
     streamDestroyed: function (event) {
-      console.log("Publisher stopped streaming. Reason: "
+      console.log('Publisher stopped streaming. Reason: '
         + event.reason);
     }
   });
+
+  function swith_connected_ui(connected) {
+    if (connected) {
+      $('.connect').hide();
+      $('.disconnect').show();
+    } else {
+      $('.connect').show();
+      $('.disconnect').hide();
+    }
+  };
 
   session = OT.initSession(apiKey, sessionId);
   session.on({
@@ -28,13 +48,17 @@ function openTokConnect(apiKey, sessionId, token) {
     sessionDisconnected: function sessionDisconnectHandler(event) {
       // The event is defined by the SessionDisconnectEvent class
       console.log('Disconnected from the session.');
-      document.getElementById('disconnectBtn').style.display = 'none';
+      swith_connected_ui(false);
       if (event.reason == 'networkDisconnected') {
         alert('Your network connection terminated.')
       }
     },
     streamCreated: function(event) {
-      session.subscribe(event.stream);
+      session.subscribe(event.stream, 'chat', {
+        insertMode: 'append',
+        width: '400px',
+        height: '360px'
+      });
     }
   });
 
@@ -43,18 +67,17 @@ function openTokConnect(apiKey, sessionId, token) {
     if (error) {
       console.log('Unable to connect: ', error.message);
     } else {
-      document.getElementById('disconnectBtn').style.display = 'block';
       console.log('Connected to the session.');
+      swith_connected_ui(true);
       connectionCount = 1;
 
       if (session.capabilities.publish == 1) {
         session.publish(publisher);
       } else {
-        console.log("You cannot publish an audio-video stream.");
+        console.log('You cannot publish an audio-video stream.');
       }
     }
   });
-
 }
 
 function openTokDisconnect() {
@@ -62,7 +85,7 @@ function openTokDisconnect() {
 }
 
 $(function() {
-  $('.join').click(function() {
+  $('.connect').click(function() {
     $.ajax({
       url: $(this).data('url'),
       method: 'POST',
@@ -70,5 +93,9 @@ $(function() {
         openTokConnect(data.api_key, data.session_id, data.token);
       }
     });
+  });
+
+  $('.disconnect').click(function() {
+    openTokDisconnect();
   });
 });
